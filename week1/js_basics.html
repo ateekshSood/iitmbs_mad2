@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS Basics</title>
+
+	<style>
+
+	    #d2{
+			
+			text-align: center;
+			width: 100vw;
+			color: red;
+			font-size: 20px;
+			
+		}
+
+	</style>
+	
+	
+    </head>
+
+    <body>
+
+        <div id="d1">Js basics</div>
+        <div id="d2"></div>
+
+        <button id="btn" type="button">Click me</button>
+        <button id="btn2" type="button">CLick for timer</button>
+
+
+        
+        <script>
+
+          let i = 10;
+
+          function returnNewPromise(time){
+            return new Promise((resolve) => {
+              setTimeout(()=>{
+                resolve();
+              } , 1000)
+            })
+          }
+
+          async function printStuffInit(){
+
+            const another_div = document.getElementById("d2");
+
+            while(i > 0){
+              
+              await returnNewPromise();
+
+              i = i - 1;
+              
+              another_div.textContent = i;
+              
+            }
+
+            i = 10;
+            
+          }
+
+          const btn2 = document.getElementById("btn2");
+
+          btn2.addEventListener("click" , ()=>{
+            printStuffInit();
+            
+          })
+
+
+          const button = document.getElementById("btn");
+          const change_text = document.getElementById("d1");
+            
+          button.addEventListener("click" , ()=>{
+
+            if(change_text.textContent === "Js basics"){
+                change_text.textContent = "Yeah this is changed init";
+            }
+            else{
+              change_text.textContent = "Js basics";
+            }
+            
+            
+          });
+
+          
+
+        
+        </script>
+
+            
+    </body>
+
+    
+</html>
