@@ -1,97 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
     <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JS Basics</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS Basics</title>
 
-	<style>
-
-	    #d2{
-			
-			text-align: center;
-			width: 100vw;
-			color: red;
-			font-size: 20px;
-			
-		}
-
-	</style>
-	
-	
+        <style>
+            #d2 {
+                text-align: center;
+                width: 100vw;
+                color: red;
+                font-size: 20px;
+            }
+        </style>
     </head>
 
     <body>
-
         <div id="d1">Js basics</div>
         <div id="d2"></div>
 
         <button id="btn" type="button">Click me</button>
         <button id="btn2" type="button">CLick for timer</button>
 
-
-        
         <script>
+            let i = 10;
 
-          let i = 10;
-
-          function returnNewPromise(time){
-            return new Promise((resolve) => {
-              setTimeout(()=>{
-                resolve();
-              } , 1000)
-            })
-          }
-
-          async function printStuffInit(){
-
-            const another_div = document.getElementById("d2");
-
-            while(i > 0){
-              
-              await returnNewPromise();
-
-              i = i - 1;
-              
-              another_div.textContent = i;
-              
+            function returnNewPromise(time) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 1000);
+                });
             }
 
-            i = 10;
-            
-          }
+            async function printStuffInit() {
+                const another_div = document.getElementById("d2");
 
-          const btn2 = document.getElementById("btn2");
+                while (i > 0) {
+                    await returnNewPromise();
 
-          btn2.addEventListener("click" , ()=>{
-            printStuffInit();
-            
-          })
+                    i = i - 1;
 
+                    another_div.textContent = i;
+                }
 
-          const button = document.getElementById("btn");
-          const change_text = document.getElementById("d1");
-            
-          button.addEventListener("click" , ()=>{
-
-            if(change_text.textContent === "Js basics"){
-                change_text.textContent = "Yeah this is changed init";
+                i = 10;
             }
-            else{
-              change_text.textContent = "Js basics";
-            }
+
+            const btn2 = document.getElementById("btn2");
+
+            btn2.addEventListener("click", () => {
+                printStuffInit();
+            });
+
+            const button = document.getElementById("btn");
+            const change_text = document.getElementById("d1");
+
+            button.addEventListener("click", () => {
+                if (change_text.textContent === "Js basics") {
+                    change_text.textContent = "Yeah this is changed init";
+                } else {
+                    change_text.textContent = "Js basics";
+                }
+            });
+
+            let date_one = "2025-03-10";
+            let date_two = "2025-02-10";
+
+            let done = new Date(date_one);
+            let dtwo = new Date(date_two);
+
+            console.log(Math.ceil(Math.abs(done - dtwo) / (3600 * 24 * 1000)));
+
+            const try_obj = {
+                name: "Mohit",
+            };
+
+            try_obj.name = "tung_tung_tung";
+
+            console.log(try_obj.name);
+
+            setTimeout(() => {
+                console.log("why we still here just to suffer");
+            } , 0);
+
+            console.log("will print after");
+
+            
+            setTimeout(() => {
+                console.log("why we still here just to suffer");
+            } , 0);
+
+            console.log("will print after");
             
             
-          });
-
-          
-
-        
+            
         </script>
-
-            
     </body>
-
-    
 </html>
