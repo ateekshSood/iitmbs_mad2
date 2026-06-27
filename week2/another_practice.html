@@ -1,0 +1,103 @@
+<html lang="en">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+    </head>
+
+    <body>
+
+        <script>
+
+        // Master Challenge 3: The Module Architect (Exports, Imports, and State Management)
+        // 
+        // The Scenario: You are splitting a large application into multiple files. You have a backend logic file (counterModule.js) that tracks user interactions, 
+        // and a main UI script (app.js) that displays them.
+        // 
+        // Your Task:
+        // 
+        // The Setup (counterModule.js): Imagine you declare a variable let clickCount = 0; inside this module. You write a function increment() that increases
+        //  clickCount by 1. Finally, you write a standalone function reset() that resets it to 0.
+        // Write the export statements to: a) Export clickCount and increment as named exports. b) Export reset as the default export.
+        // The Import (app.js):
+        // Write the exact import statement needed to bring in the default export (and name it resetApp), as well as the named exports clickCount and increment.
+        // The Trap: Inside app.js, you try to run the code clickCount++;. What exact error will Javascript throw and why
+        // ? How must you correctly change the value of clickCount from inside app.js
+        // ?
+        // The HTML Requirement: In your index.html file, how must you write the <script> tag that loads app.js so that the browser does not crash when it sees your import statements
+        // ?
+        // Reference Answer Context:
+        // Exports: export { clickCount, increment }; and export default reset;
+        // .
+        // Imports: import resetApp, { clickCount, increment } from './counterModule.js';
+        // .
+        // The Trap: Running clickCount++ will throw an "assignment to constant variable" error. Even though clickCount was declared with let in its original module, imported variables act as read-only references
+        // . To change it, you must call the exported increment() function, which runs in the original scope and modifies the value
+        // .
+        // HTML: You must use <script type="module" src="app.js">// /script>. Without type="module", imports and exports will fail
+        // .
+        // Master Challenge 4: Object Mutations and References (Methods, this, and Copying)
+        // The Scenario: You are managing a configuration object for a game character. You need to dynamically add behavior to it and create backup 
+        // copies before making risky changes.
+        // 
+        // Your Task: Given the following object literal: let hero = { health: 100, name: "Arthur" };
+        // Dynamic Methods & this: Without modifying the original {} declaration, dynamically add a method called takeDamage to the hero object. This function should take a parameter amount and subtract it from the hero's health.
+        // Crucial Question: Inside your function, why must you write this.health = this.health - amount; instead of simply health = health - amount;
+        // ?
+        // The Reference Bug: You want to make a temporary backup of your hero. You write: let backupHero = hero; backupHero.health = 50; What is the value of hero.health (the original) after this code runs? Why
+        // ?
+        // The Fix: Rewrite the backup code using the spread operator (...) to prevent the bug in step 2
+        // . Does this spread technique create a "deep copy" (fully independent across all nested levels) or a "shallow copy"
+        // ?
+        // Reference Answer Context:
+        // Dynamic Methods: hero.takeDamage = function(amount) { this.health -= amount; }
+        // . You must use this.health because Javascript needs the context. Just writing health will make it look for a local variable in the current scope, fail to find it, and throw an error
+        // .
+        // The Reference Bug: The original hero.health will also be 50. In JavaScript, backupHero = hero merely creates a pointer/reference to the original object, not a separate copy
+        // .
+        // The Fix: You should write let backupHero = { ...hero };. This creates a new object and spreads the properties in
+        // . However, this only creates a shallow copy. If your hero had nested objects (like hero.inventory.sword), those nested objects would still be shared references
+        // .
+         
+          
+        </script>
+
+        <script type="module">
+
+        //master challenege 3
+
+        // import resetApp from './counterModule.js';
+        // import {increment} from './counterModule.js'; 
+        // import {clickCount} from './counterModule.js';
+
+        // console.log(clickCount);
+        // increment();
+        // console.log(clickCount);
+        
+
+        </script>
+
+        <script>
+
+        let hero = { health: 100, name: "Arthur" };
+
+        hero.takeDamage = (damage)=>{
+          this.health - damage;
+        }
+
+        let copy = {...hero};
+        copy.health = 1000;
+
+        console.log(hero);
+        console.log(copy);
+
+        </script>
+
+        
+        </script>
+
+        
+    </body>
+
+    
+</html>
