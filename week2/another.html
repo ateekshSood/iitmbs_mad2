@@ -11,8 +11,83 @@
 
         <script>
 
-        
+        let employee = { first: "John", last: "Doe",
 
+          get fullName(){
+            return this.first + " " + this.last;
+          },
+
+          set fullName(string){
+            [this.first , this.last] = string.split(" ");
+          },
+
+        };
+
+        console.log(employee.fullName);
+        employee.fullName = "Jane Smith";
+        console.log(employee.fullName);
+
+        function computeBonus(base, multiplier){ 
+          return base * multiplier + this.bonusPoints; 
+        }
+
+        const worker ={ 
+          bonusPoints: 500,
+        };
+
+        console.log(computeBonus(100 , 2)); //NaN cuz this is undefined in global window 
+
+        let w = worker;
+
+        console.log((computeBonus.call(w , 100 , 2)));
+
+
+        console.log(computeBonus.apply(w , [100 , 2]));
+
+
+        let doubleBonus = computeBonus.bind(w , 2);
+        console.log(doubleBonus(500));
+
+        // 
+
+        const baseAnimal = { type: "mammal", breathe() { this.alive = true; } };
+
+        const dog = {
+          __proto__ : baseAnimal,
+          sound : "bark",
+          
+        }
+
+        dog.breathe();
+        console.log(dog.alive + " " + dog.sound);
+
+        class Animal{
+
+          constructor(type){
+            this.type = type;
+          }
+
+          
+        }
+
+
+        class Dog extends Animal{
+
+          
+          constructor(type){
+            super(type);
+            this.sound = "bark";
+          }
+                  
+          
+        }
+
+
+        d = new Dog("mammal");
+
+      
+        
+        
         </script>
         
     </body>
