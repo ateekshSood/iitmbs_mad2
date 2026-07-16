@@ -1,63 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
-	<title>Document</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+        <title>Document</title>
     </head>
     <body>
         <div id="yeah">
 
-            <label>your name : </label>
-            <input type="text" v-model="visitor_name">
-            <label>Your message : </label>
-            <input type="text" v-model="visitor_msg" @keyup.enter="sayHI">
+            <table>
+
+                <tr>
+
+                    <td><message_board title="atu"></message_board></td>
+                    <td><message_board title="paddu"></message_board></td>
+                    <td><message_board title="daddu"></message_board></td>
+                            
+                </tr>
                 
-
-            
-            
-            <button v-on:click=sayHI >nigga</button>
-
-            <ul>
-
-                <li v-for="message in messages">{{message["visitor_name"]}} : {{message["visitor_message"]}}</li>
-                
-            </ul>
-            
+            </table>
+                        
         </div>
-        
 
 
-
-        
         <script>
-          Vue.config.devtools = true;
-          const app = new Vue({
-            el: "#yeah",
-            data: {
-              visitor_name : "",
-              visitor_msg : "",
-              messages : []
-            },
-            methods : {
-              sayHI: function(){
-               
-                
-                this.messages.push({"visitor_name" : this.visitor_name , "visitor_message" : this.visitor_msg})
-                this.visitor_name = ""
-                this.visitor_msg = ""
-              }
-            },
+            Vue.config.devtools = true;
 
-            computed : {
-            count : function(){
-              return this.messages.length;
-            
-          }
-          }
-          })
+            Vue.component("message_board", {
+                props:[`title`],
+                template: `
+                <div>
+                  <h3>{{title}}</h3>
+                  <label>your name : </label>
+                  <input type="text" v-model="visitor_name" />
+                  <label>Your message : </label>
+                  <input type="text" v-model="visitor_msg" @keyup.enter="sayHI" />
+  
+                  <button v-on:click="sayHI">nigga</button>
+  
+                  <ul>
+                      <li v-for="message in messages">
+                          {{message["visitor_name"]}} : {{message["visitor_message"]}}
+                      </li>
+                  </ul>
+                </div>
+                `,
+
+                data: function () {
+                    return {
+                        visitor_name: "",
+                        visitor_msg: "",
+                        messages: [],
+                    };
+                },
+                methods: {
+                    sayHI: function () {
+                        this.messages.push({
+                            visitor_name: this.visitor_name,
+                            visitor_message: this.visitor_msg,
+                        });
+                        this.visitor_name = "";
+                        this.visitor_msg = "";
+                    },
+                },
+
+                computed: {
+                    count: function () {
+                        return this.messages.length;
+                    },
+                },
+            });
+
+            const app = new Vue({
+                el: "#yeah",
+            });
         </script>
     </body>
-    
 </html>
