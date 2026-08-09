@@ -8,14 +8,14 @@
     </head>
     <body>
         <div id="yeah">
-
+            <h2>total messages : {{global_total}}</h2>
             <table>
-
+                
                 <tr>
 
-                    <td><message_board title="atu"></message_board></td>
-                    <td><message_board title="paddu"></message_board></td>
-                    <td><message_board title="daddu"></message_board></td>
+                    <td><message_board title="atu" v-on:add_to_global_total="count_global"></message_board></td>
+                    <td><message_board title="paddu" v-on:add_to_global_total="count_global"></message_board></td>
+                    <td><message_board title="daddu" v-on:add_to_global_total="count_global"></message_board></td>
                             
                 </tr>
                 
@@ -62,6 +62,7 @@
                         });
                         this.visitor_name = "";
                         this.visitor_msg = "";
+                        this.$emit("add_to_global_total");
                     },
                 },
 
@@ -74,6 +75,14 @@
 
             const app = new Vue({
                 el: "#yeah",
+                data : {
+                  global_total : 0,
+                },
+                methods: {
+                  count_global: function(){
+                    this.global_total = this.global_total + 1
+                  }
+                }
             });
         </script>
     </body>
