@@ -10,17 +10,17 @@
         <div id="yeah">
             <h2>total messages : {{global_total}}</h2>
             <table>
-                
+
                 <tr>
 
                     <td><message_board title="atu" v-on:add_to_global_total="count_global"></message_board></td>
                     <td><message_board title="paddu" v-on:add_to_global_total="count_global"></message_board></td>
                     <td><message_board title="daddu" v-on:add_to_global_total="count_global"></message_board></td>
-                            
+
                 </tr>
-                
+
             </table>
-                        
+
         </div>
 
 
@@ -36,9 +36,9 @@
                   <input type="text" v-model="visitor_name" />
                   <label>Your message : </label>
                   <input type="text" v-model="visitor_msg" @keyup.enter="sayHI" />
-  
+
                   <button v-on:click="sayHI">nigga</button>
-  
+
                   <ul>
                       <li v-for="message in messages">
                           {{message["visitor_name"]}} : {{message["visitor_message"]}}
@@ -81,7 +81,35 @@
                 methods: {
                   count_global: function(){
                     this.global_total = this.global_total + 1
-                  }
+                  },
+                },
+                beforeCreate : function(){
+                  console.log("before create");
+                  console.log(this.global_total);
+                  
+                },
+                created: function(){
+                  //fetch data 
+                  console.log("after create");
+                  console.log(this.global_total);
+                },
+                beforeMount: function(){
+                  console.log("before mounted");
+                  console.log(this.$el);
+                  
+                  
+                },
+                mounted : function(){
+                  // fetch data from backend
+                  console.log("after mounted");
+                  console.log(this.$el);
+                  
+                },
+                beforeUpdate: function(){
+                  console.log("before update");
+                },
+                updated : function(){
+                  console.log("after update");
                 }
             });
         </script>
