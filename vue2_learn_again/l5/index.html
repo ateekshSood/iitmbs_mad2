@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Challenge 5</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .product { border: 1px solid #ccc; padding: 15px; margin: 10px; width: 200px; display: inline-block; text-align: center; }
+        .cart { background-color: #f0f0f0; padding: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="cart">
+            <!-- 1. Display the cartCount variable here -->
+            Items in Cart: {{ cartCount }}
+        </div>
+        
+        <h1>Our Store</h1>
+        
+        <!-- 4. Listen for the 'item-bought' event and run the 'addToCart' method -->
+        <product-card @item-bought="addToCart" product-name="Keyboard" price="100"></product-card>
+        <product-card @item-bought="addToCart" product-name="Mouse" price="50"></product-card>
+        
+    </div>
+
+    <script>
+        Vue.component('product-card', {
+            props: ["product-name", "price"],
+            // 2. Add a <button> inside this template. When clicked, trigger a method called 'buyItem'
+            template: `
+                <div class="product">
+                  <h3>{{productName}}</h3>
+                  <p>\${{price}}</p>
+                  
+                </div>
+            `,
+            methods: {
+                // 3. Write the buyItem method. It needs to emit an event named 'item-bought'
+                buyItem() {
+                    
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+                // Hint: Create a cartCount variable starting at 0
+            },
+            methods: {
+                // Hint: Create the addToCart method that increases cartCount by 1
+            }
+        });
+    </script>
+</body>
+</html>

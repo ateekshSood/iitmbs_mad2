@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Challenge 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .product { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin: 10px; 
+            width: 200px; 
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Our Store</h1>
+        
+        <!-- 3. Use your custom component here three times -->
+        <product-card productname="p1" price="100"></product-card>
+        <product-card productname="p2" price="200"></product-card>
+        <product-card productname="p3" price="300"></product-card>
+        
+        <!-- Pass a different 'productName' and 'price' to each one -->
+        
+    </div>
+
+    <script>
+        // 1. Define your component BEFORE the main Vue instance
+        Vue.component('product-card', {
+            // Hint: Accept two props: 'productName' and 'price'
+            props: ["productname" , "price"],
+            
+            // 2. Write the template. It should use the .product class styling.
+            // Display the product name in an <h3> and the price in a <p>.
+            // Add a button that says "Buy". 
+            template: `
+                <div class="product">
+                  <h3>{{productname}}</h3>
+                  <p>{{price}}</p>
+                </div>
+            `
+        });
+
+        // The main Vue app
+        new Vue({
+            el: "#app"
+        });
+    </script>
+</body>
+</html>
