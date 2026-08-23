@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Challenge 2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .counter-box { font-family: monospace; text-align: center; margin-top: 50px; }
+        h1 { font-size: 4rem; margin: 10px; }
+        button { padding: 10px 20px; font-size: 1.2rem; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="app" class="counter-box">
+        <!-- 1. Display the count variable here -->
+        <h1>{{count}}</h1>
+
+        <p v-if="flag">cant go lower than 0</p>
+        
+        <!-- 2. Add @click listeners to these buttons to trigger your methods -->
+        <button @click="decrement"> - </button>
+        <button @click="reset"> Reset </button>
+        <button v-on:click="increment"> + </button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                count : 0,
+                flag :false,
+            },
+            
+            methods: {
+                decrement(){
+
+                  if (this.count <=0){
+                    this.flag=true;
+                  }
+                  else{
+                    this.flag=false;
+                    this.count --;
+                  }
+                  
+                },
+
+                reset(){
+                  this.count = 0;
+                },
+
+                increment(){
+                  this.count++;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
