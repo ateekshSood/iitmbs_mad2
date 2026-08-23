@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Challenge 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .container { max-width: 400px; margin: 40px auto; font-family: sans-serif; }
+        .task-item { padding: 10px; border: 1px solid #ddd; margin-bottom: 5px; }
+        .empty-state { color: gray; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>Task Manager</h2>
+        
+        <div>
+            <!-- 1. Bind this input to a variable -->
+            <input type="text" placeholder="Enter a new task" v-model="input">
+            <!-- 2. Call a method to add the task when clicked -->
+            <button @click="addTask">Add Task</button>
+        </div>
+
+        <hr>
+
+        <!-- 3. Use v-if to show this paragraph ONLY when the tasks array is empty -->
+        <p class="empty-state" v-if="arr.length === 0">No tasks yet. Add one above!</p>
+
+        <!-- 4. Use v-else to show this list if there ARE tasks -->
+        <ul v-else>
+            <!-- 5. Use v-for to loop through your tasks array and display each one -->
+            
+            <li class="task-item" v-for="task in arr">
+               {{task}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                input : "",
+                arr : [],
+                // Hint: You need a variable for the input string, and an array to hold the tasks
+                
+            },
+            methods: {
+              addTask(){
+                if(this.input.trim() === ""){
+                  return;
+                }
+                this.arr.push(this.input);
+                this.input = "";
+              }
+                // Hint: This method should push the new task to the array and clear the input
+                
+            }
+        });
+    </script>
+</body>
+</html>
