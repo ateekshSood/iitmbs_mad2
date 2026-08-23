@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>VUe stuff</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <label for="input_field">Enter something : </label>
+            <input type="text" id="input_field" v-model="someData">
+
+    
+            <h1>Hello , {{someData}}</h1>
+            
+        </div>
+
+        <script>
+
+          new Vue({
+            el:"#app",
+            data:{
+              someData:"",
+            },
+            methods:{
+              
+            }
+          })
+
+        </script>
+
+
+
+        
+    </body>
+</html>
