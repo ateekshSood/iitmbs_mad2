@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue Challenge 6</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        .container { font-family: sans-serif; padding: 20px; }
+        .user-card { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>System Users</h2>
+        
+        <!-- 1. Use v-if to show this ONLY when 'isLoading' is true -->
+        <p v-if="isLoading">Loading user data from server...</p>
+
+        <!-- 2. Use v-else for this <div> -->
+        <div v-else>
+            <!-- 3. Use v-for to loop over 'users' and display their name and role -->
+            <div class="user-card" v-for="user in users">
+                <strong>{{user.name}}</strong> - {{user.role}}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                isLoading: true,
+                users: []
+            },
+            // 4. Add the 'created' lifecycle hook here.
+            // Inside it, call the 'fetchUsers' method.
+            created(){
+                this.fetchUsers();
+            },
+            
+            
+            methods: {
+                fetchUsers() {
+                    // Simulating a 2-second delay from a Python Flask backend
+                    setTimeout(() => {
+                        this.users = [
+                            { id: 1, name: "Alice", role: "Admin" },
+                            { id: 2, name: "Bob", role: "Editor" },
+                            { id: 3, name: "Charlie", role: "Viewer" }
+                        ];
+                        // 5. Set 'isLoading' to false so the UI updates
+                        this.isLoading = false;
+                        
+                    }, 2000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

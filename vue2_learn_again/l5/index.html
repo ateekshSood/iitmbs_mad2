@@ -31,12 +31,14 @@
                 <div class="product">
                   <h3>{{productName}}</h3>
                   <p>\${{price}}</p>
+                  <button @click="buyItem">Buy</button>
                   
                 </div>
             `,
             methods: {
                 // 3. Write the buyItem method. It needs to emit an event named 'item-bought'
                 buyItem() {
+                  this.$emit('item-bought');
                     
                 }
             }
@@ -46,9 +48,13 @@
             el: "#app",
             data: {
                 // Hint: Create a cartCount variable starting at 0
+                cartCount : 0
             },
             methods: {
                 // Hint: Create the addToCart method that increases cartCount by 1
+                addToCart(){
+                  this.cartCount ++;
+                }
             }
         });
     </script>
