@@ -55,7 +55,8 @@ Phase 0 — Setup
 - [ ] 00 Environment: venv, packages, Redis, MailHog, git habits
 
 Phase 1 — Vue 2
-- [ ] 01 Components, props, `$emit` (and fix bugs in your l7/l8 files)
+- [ ] 01a Vue from scratch: `{{ }}`, methods, `@click`, Bootstrap, `v-bind`, `:class`, `v-if`, `v-for`, `v-model`
+- [ ] 01b Components, props, `$emit`
 - [ ] 02 Forms: `v-model`, validation, `computed`, `watch`
 - [ ] 03 Vue Router 3: routes, params, navigation guards
 
@@ -86,4 +87,4 @@ Phase 5 — Redis & Celery
 Phase 6 — Ship it
 - [ ] 20 Project structure, zip rules, report (ER diagram, API list), video, viva prep
 
-Lessons 00–05 are ready. I'll write the rest as you reach them, so I can adjust to how you're doing.
+Lessons 00–05 (including 01a and 01b) are ready. I'll write the rest as you reach them, so I can adjust to how you're doing.
