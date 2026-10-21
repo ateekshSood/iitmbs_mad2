@@ -1,5 +1,11 @@
 # Lesson 01a — Vue 2 from scratch
 
+> **Vue 3 note (Oct 2026):** the course now uses Vue 3 + Vite. Everything in this lesson's
+> templates (`{{ }}`, `@click`, `v-bind`, `:class`, `v-if`, `v-for`, `v-model`) and the
+> `data`/`methods` options works the same in Vue 3. Only the start-up changes:
+> `new Vue({ el, data: {...} })` becomes `createApp({ data() { return {...} } }).mount('#app')`,
+> and `data` is always a function. Lesson 01b shows the Vue 3 + Vite way from scratch.
+
 Eight small steps. Each step has:
 - **Learn:** the idea, in plain words
 - **Type this:** a complete working example. Type it yourself (don't copy-paste; typing is how it sticks)

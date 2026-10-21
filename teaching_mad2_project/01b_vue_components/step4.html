@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+        <title>Step 4</title>
+    </head>
+    <body>
+        <div id="app">
+            <buy-fruits fruit_name="pineapple" @fruit="onBuy"></buy-fruits>
+            <buy-fruits fruit_name="apple" @fruit="onBuy"></buy-fruits>
+            {{buy_qty}}
+        </div>
+        <script>
+
+            Vue.component('buy-fruits' , {
+              props:['fruit_name'],
+
+              methods:{
+                click_fruit(){
+                  this.$emit('fruit');
+                }
+              },
+
+              template: 
+              `
+              <div>
+              <div>{{fruit_name}}</div>
+              <button @click="click_fruit">Buy</button>
+              </div>
+              `
+
+            
+            });
+
+
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    buy_qty: 0,
+                },
+
+                methods:{
+                  onBuy(){
+                    this.buy_qty +=1;
+                  }
+                }
+
+            });
+        </script>
+    </body>
+</html>

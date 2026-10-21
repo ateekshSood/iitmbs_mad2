@@ -25,8 +25,9 @@ When you build the real project, you design it from scratch for your own domain.
 
 ## Tech decisions (all allowed by the spec)
 
-- **Vue 2 via CDN** (no npm/Vite). Flask serves one `index.html` via Jinja (the "entry point"
-  the spec allows); all UI is Vue. Nothing to build → easier to start within the viva's 10 minutes.
+- **Vue 3 + Vite, `.vue` files, Options API** (`data()`/`methods`/`props`, not `<script setup>`).
+  Course update, Oct 2026. The frontend is a Vite project; Flask is a JSON API it calls
+  (lesson 05 covers how they connect).
 - **Flask + Flask-SQLAlchemy + Flask-RESTful** for the API, **SQLite** DB created from code.
 - **JWT** (flask-jwt-extended), one unified `User` model with a `role` column.
 - **Bootstrap 5** for styling (no other CSS framework).
@@ -42,27 +43,27 @@ project_name_2XfXXXXXX.zip
     │   ├── models/              ← SQLAlchemy models
     │   └── routes/              ← API resources, split by role/feature
     └── frontend/
-        ├── index.html           (CDN entry point)
-        └── components/          ← Vue components (.js in CDN mode)
+        ├── index.html, package.json, vite.config.js
+        └── src/components/      ← Vue components (.vue files)
 ```
-The diagram shows `.vue` files, which need a build tool (Vite). It's labelled a "probable"
-structure, so CDN mode with `.js` components in the same folders is fine. Lessons 04–07 teach
-the backend/ split, and lesson 20 covers zipping and checking the result.
+This matches the diagram's `.vue` files. **Never zip `node_modules/`** (it's huge and
+`npm install` recreates it). Lessons 04–07 teach the backend/ split, and lesson 20 covers zipping
+and checking the result.
 
 ## Roadmap
 
 Phase 0 — Setup
 - [ ] 00 Environment: venv, packages, Redis, MailHog, git habits
 
-Phase 1 — Vue 2
-- [ ] 01a Vue from scratch: `{{ }}`, methods, `@click`, Bootstrap, `v-bind`, `:class`, `v-if`, `v-for`, `v-model`
-- [ ] 01b Components, props, `$emit`
+Phase 1 — Vue 3 (Vite, Options API)
+- [ ] 01a Vue from scratch (written for Vue 2 CDN; same template syntax in Vue 3): `{{ }}`, methods, `@click`, Bootstrap, `v-bind`, `:class`, `v-if`, `v-for`, `v-model`
+- [ ] 01b Vite project setup, `.vue` files, components, props, `emits`/`$emit`, `npm run build`
 - [ ] 02 Forms: `v-model`, validation, `computed`, `watch`
-- [ ] 03 Vue Router 3: routes, params, navigation guards
+- [ ] 03 Vue Router 4: routes, params, navigation guards
 
 Phase 2 — Flask
 - [ ] 04 Flask basics: routes, JSON, HTTP methods, status codes
-- [ ] 05 Vue meets Flask: Jinja entry point, static files, `fetch` with async/await
+- [ ] 05 Vue meets Flask: Vite dev server + Flask API, CORS/proxy, `fetch` with async/await
 - [ ] 06 SQLAlchemy models + relationships (1-to-many, chains of FKs), `create_all`, seeding the admin
 - [ ] 07 Flask-RESTful resources + backend validation
 
@@ -87,4 +88,4 @@ Phase 5 — Redis & Celery
 Phase 6 — Ship it
 - [ ] 20 Project structure, zip rules, report (ER diagram, API list), video, viva prep
 
-Lessons 00–05 (including 01a and 01b) are ready. I'll write the rest as you reach them, so I can adjust to how you're doing.
+Lessons 00, 01a and 01b are ready. 02, 03 and 05 were written for Vue 2 CDN and will be rewritten for Vue 3 + Vite before you start them; 04 (Flask) is unaffected. I'll write the rest as you reach them, so I can adjust to how you're doing.
