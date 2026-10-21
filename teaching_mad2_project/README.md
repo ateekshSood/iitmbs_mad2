@@ -50,42 +50,39 @@ This matches the diagram's `.vue` files. **Never zip `node_modules/`** (it's hug
 `npm install` recreates it). Lessons 04–07 teach the backend/ split, and lesson 20 covers zipping
 and checking the result.
 
-## Roadmap
+## Schedule (deadline: Nov 17, 2026)
 
-Phase 0 — Setup
-- [ ] 00 Environment: venv, packages, Redis, MailHog, git habits
+Four days to learn everything on Library Hub, then build the exam portal yourself (Oct 25 – Nov 17).
 
-Phase 1 — Vue 3 (Vite, Options API)
-- [ ] 01a Vue from scratch (written for Vue 2 CDN; same template syntax in Vue 3): `{{ }}`, methods, `@click`, Bootstrap, `v-bind`, `:class`, `v-if`, `v-for`, `v-model`
-- [ ] 01b Vite project setup, `.vue` files, components, props, `emits`/`$emit`, `npm run build`
-- [ ] 02 Forms: `v-model`, validation, `computed`, `watch`
-- [ ] 03 Vue Router 4: routes, params, navigation guards
+| Day | Modules |
+|---|---|
+| 1 | M1 Vite & Vue 3, M2 Components, Router & `fetch` |
+| 2 | M3 Flask-RESTful + SQLAlchemy, Vue ↔ Flask, booking rules |
+| 3 | M4 JWT + roles + route guards, M5 Redis caching |
+| 4 | M6 Celery + scheduled jobs, M7 CSV + email |
+| later | M8 polish, while building the project |
 
-Phase 2 — Flask
-- [ ] 04 Flask basics: routes, JSON, HTTP methods, status codes
-- [ ] 05 Vue meets Flask: Vite dev server + Flask API, CORS/proxy, `fetch` with async/await
-- [ ] 06 SQLAlchemy models + relationships (1-to-many, chains of FKs), `create_all`, seeding the admin
-- [ ] 07 Flask-RESTful resources + backend validation
+## Roadmap (follows the bootcamp's 8 modules)
 
-Phase 3 — Auth
-- [ ] 08 Password hashing + unified User model with roles
-- [ ] 09 JWT login, `@jwt_required`, a custom `@role_required` decorator
-- [ ] 10 Frontend auth: storing the token, route guards per role, logout, blocked users
+You build **one app**, `library-hub/` (`frontend/` + `backend/`), a little more in each module.
+Each module's lesson is `mN_.../TASK.md`. Extra lessons for project needs the bootcamp doesn't cover
+are marked **+**.
 
-Phase 4 — Business logic
-- [ ] 11 Dates & windows: Python `datetime`, "is booking open right now?", date inputs in Vue
-- [ ] 12 Booking rules: one per event, no overbooking, auto-"Full", cancel before deadline
-- [ ] 13 Scored evaluation: criteria with max marks/weightage, computing totals, publishing results
-- [ ] 14 Search & filter queries (`ilike`, joins, multiple filters)
-- [ ] 15 Dashboards: counts/aggregates + Chart.js
+- [x] 00 Environment setup (done)
+- [ ] **M1** `m1_vite_vue3/`: Vite project, SFCs, `v-for`/`v-if`/`v-model`, `computed`, `created`/`mounted`, local components
+- [ ] **M2** `m2_interactive_ui/`: Vue Router, props, `$emit`, `fetch` + async/await, route params, login form + `localStorage`
+- [ ] **M3** `m3_api_bridge/`: Flask-RESTful resources, SQLAlchemy models + relationships, validation, CORS, the `api.js` fetch helper
+- [ ] **M4** `m4_jwt_auth/`: password hashing, JWT login, `role_required`, **booking rules** (window, one per session, no overbooking, cancel), route guards
+- [ ] **M5** `m5_redis_caching/`: `@cache.cached`, expiry, invalidation, manual cache-aside
+- [ ] **M6** `m6_celery/`: Celery + Flask app context, worker, CSV export job, polling, download
+- [ ] **M7** `m7_reports_mail/`: MailHog + smtplib, CSV by email, daily reminders, monthly Jinja HTML report, Celery Beat
+- [ ] **M8** `m8_polish/`: no Pinia. A polish checklist for the real project
+- [ ] **+** Ship it: zip rules, report (ER diagram, API list), video, viva prep (ask me when you get there)
 
-Phase 5 — Redis & Celery
-- [ ] 16 Redis caching with expiry + cache invalidation
-- [ ] 17 Celery basics: worker, tasks, `.delay()`
-- [ ] 18 Celery beat: daily reminder + monthly HTML report (Jinja) by email
-- [ ] 19 User-triggered async CSV export + "done" alert
+All backend code in M3–M7 was tested end to end (Redis, worker, MailHog) before it went into the
+lessons. Each lesson starts with a list of fixes to the bootcamp notes.
 
-Phase 6 — Ship it
-- [ ] 20 Project structure, zip rules, report (ER diagram, API list), video, viva prep
+**No axios:** you can't use it, so all HTTP calls use the browser's built-in `fetch`.
 
-Lessons 00, 01a and 01b are ready. 02, 03 and 05 were written for Vue 2 CDN and will be rewritten for Vue 3 + Vite before you start them; 04 (Flask) is unaffected. I'll write the rest as you reach them, so I can adjust to how you're doing.
+The older lessons (01a Vue 2, 01b, 02–05) are replaced by the modules. 01a's template syntax still
+applies, and 01b's props/`$emit` steps get reused in M2.

@@ -1,5 +1,8 @@
 # Lesson 01b — Vue 3 components with Vite (from scratch)
 
+> **Replaced by `m1_vite_vue3/` and Module 2** (2026-10-21). You don't need to do this lesson.
+> Its props/`$emit` steps get reused in Module 2.
+
 The course now uses **Vue 3**, built with **Vite**, in **`.vue` files**, with the **Options API**.
 The Options API is the `data()` / `methods` / `props` style you learned in 01a. Almost everything
 from 01a still works. What changes is how the app starts and where the code lives.
